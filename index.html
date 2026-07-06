@@ -100,7 +100,6 @@
         }
         .deck-card img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* Улучшенная свеча */
         .candle-container {
             margin-top: 25px;
             position: relative;
@@ -141,7 +140,7 @@
             transform: translateX(-50%) scale(0);
             opacity: 0;
             transition: all 0.8s ease-out;
-            box-shadow: 0 0 25px #FFA500, 0 0 45px #FF6347, 0 0 65px #FFD700, 0 0 85px rgba(255, 100, 50, 0.5);
+            box-shadow: 0 0 25px #FFA500, 0 0 45px #FF6347, 0 0 65px #FFD700;
             animation: flicker 0.3s infinite alternate;
             filter: blur(0.5px);
         }
@@ -151,16 +150,11 @@
             animation: growFlame 3s ease-out, flicker 0.3s infinite alternate;
         }
         @keyframes flicker {
-            0% { transform: translateX(-50%) scale(0.95, 1.05) rotate(-1deg); opacity: 0.9; }
-            25% { transform: translateX(-50%) scale(1.02, 0.98) rotate(0.5deg); opacity: 1; }
-            50% { transform: translateX(-50%) scale(0.98, 1.02) rotate(-0.5deg); opacity: 0.95; }
-            75% { transform: translateX(-50%) scale(1.01, 0.99) rotate(1deg); opacity: 1; }
-            100% { transform: translateX(-50%) scale(1, 1) rotate(0deg); opacity: 0.98; }
+            0% { transform: translateX(-50%) scale(0.95, 1.05); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.05, 0.95); opacity: 1; }
         }
         @keyframes growFlame {
             0% { transform: translateX(-50%) scale(0); opacity: 0; }
-            30% { transform: translateX(-50%) scale(1.15); opacity: 0.8; }
-            60% { transform: translateX(-50%) scale(1.05); }
             100% { transform: translateX(-50%) scale(1); opacity: 1; }
         }
         .lighter {
@@ -195,14 +189,13 @@
             border-radius: 20px;
             padding: 25px;
             position: relative;
-            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(11, 107, 129, 0.2);
+            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6);
         }
         .table h2 { 
             color: #B1B9C5; 
             margin-bottom: 20px; 
             text-align: center;
             font-size: 1.8em;
-            text-shadow: 0 0 15px rgba(11, 107, 129, 0.5);
         }
         .spread-layout-wrapper { width: 100%; overflow: hidden; }
         .spread-layout {
@@ -256,7 +249,6 @@
             border-radius: 10px;
             z-index: 20;
             border: 1px solid #0B6B81;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
         .placed-card:hover .card-controls,
         .clarifier-card:hover .card-controls { display: flex !important; }
@@ -270,14 +262,12 @@
             cursor: pointer;
             font-size: 11px;
             font-weight: bold;
-            transition: all 0.2s;
         }
         .card-controls button:hover { 
             background: #12506F;
             transform: scale(1.05);
         }
         .card-controls button.clarify-btn { background: #0D2944; color: #B1B9C5; }
-        .card-controls button.clarify-btn:hover { background: #0B6B81; }
         .card-label {
             position: absolute;
             bottom: 0; left: 0; right: 0;
@@ -286,8 +276,6 @@
             padding: 6px;
             font-size: 11px;
             text-align: center;
-            border-bottom-left-radius: 7px;
-            border-bottom-right-radius: 7px;
         }
         .clarifiers-container {
             display: flex;
@@ -301,12 +289,10 @@
             border: 2px solid #0B6B81;
             border-radius: 8px;
             position: relative;
-            overflow: visible;
             background: #B1B9C5;
             cursor: move;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
         }
-        .clarifier-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+        .clarifier-card img { width: 100%; height: 100%; object-fit: cover; }
         .clarifier-card.flipped img { transform: rotate(180deg); }
         .modal {
             display: none;
@@ -317,16 +303,16 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(5px);
         }
         .modal-content {
             background: #0D2944;
             border: 3px solid #0B6B81;
             border-radius: 15px;
             padding: 30px;
-            max-width: 500px;
+            max-width: 900px;
             width: 90%;
-            box-shadow: 0 0 40px rgba(11, 107, 129, 0.4);
+            max-height: 80vh;
+            overflow-y: auto;
         }
         .modal-content h3 { color: #B1B9C5; margin-bottom: 20px; text-align: center; }
         .close-modal { float: right; font-size: 28px; cursor: pointer; color: #B1B9C5; }
@@ -339,7 +325,6 @@
             background: #07101B;
             color: #B1B9C5;
             font-size: 14px;
-            font-family: 'Georgia', serif;
         }
         textarea { resize: vertical; min-height: 90px; }
         .save-spread-btn {
@@ -353,49 +338,29 @@
             border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s;
         }
         .save-spread-btn:hover { 
             background: #12506F; 
-            border-color: #12506F;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(11, 107, 129, 0.4);
         }
-        .free-spread-container {
-            position: relative;
-            width: 100%;
-            min-height: 600px;
-        }
+        .free-spread-container { position: relative; width: 100%; min-height: 600px; }
         .question-form {
             background: rgba(177, 185, 197, 0.1);
             border: 2px solid #0B6B81;
             border-radius: 15px;
             padding: 35px;
             margin-top: 30px;
-            box-shadow: 0 0 30px rgba(11, 107, 129, 0.2);
         }
-        .question-form h2 { 
-            color: #B1B9C5; 
-            margin-bottom: 25px; 
-            text-align: center;
-            font-size: 1.8em;
-        }
+        .question-form h2 { color: #B1B9C5; margin-bottom: 25px; text-align: center; }
         .form-group { margin-bottom: 25px; }
-        .form-group label { 
-            display: block; 
-            color: #B1B9C5; 
-            margin-bottom: 12px; 
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .input-with-voice { display: flex; gap: 12px; align-items: flex-start; }
+        .form-group label { display: block; color: #B1B9C5; margin-bottom: 12px; font-size: 16px; }
+        .input-with-voice { display: flex; gap: 12px; }
         .input-with-voice textarea { 
             flex: 1; 
             padding: 14px; 
-            min-height: 90px;
             background: #F5F5F0;
             color: #07101B;
-            border: 2px solid #0B6B81;
+            min-height: 90px;
         }
         .voice-btn {
             padding: 14px 22px;
@@ -404,17 +369,10 @@
             border: 2px solid #0B6B81;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 14px;
-            white-space: nowrap;
-            transition: all 0.3s;
         }
-        .voice-btn:hover { 
-            background: #0B6B81; 
-            transform: translateY(-2px);
-        }
+        .voice-btn:hover { background: #0B6B81; }
         .voice-btn.recording {
             background: #800B1F;
-            border-color: #800B1F;
             animation: pulse 1s infinite;
         }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
@@ -427,24 +385,9 @@
             background: rgba(11, 107, 129, 0.1);
             border-radius: 10px;
         }
-        .checkbox-group input[type="checkbox"] { 
-            width: 22px; 
-            height: 22px; 
-            accent-color: #0B6B81;
-            cursor: pointer;
-        }
-        .checkbox-group label { 
-            color: #B1B9C5; 
-            cursor: pointer;
-            font-size: 15px;
-        }
-        .form-buttons { 
-            display: flex; 
-            gap: 20px; 
-            justify-content: center; 
-            margin-top: 25px; 
-            flex-wrap: wrap; 
-        }
+        .checkbox-group input[type="checkbox"] { width: 22px; height: 22px; accent-color: #0B6B81; }
+        .checkbox-group label { color: #B1B9C5; cursor: pointer; }
+        .form-buttons { display: flex; gap: 20px; justify-content: center; margin-top: 25px; flex-wrap: wrap; }
         .save-btn, .predict-btn {
             padding: 16px 45px;
             font-size: 16px;
@@ -452,34 +395,12 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s;
         }
-        .save-btn { 
-            background: #0D2944; 
-            color: #B1B9C5;
-            border: 2px solid #0B6B81;
-        }
-        .save-btn:hover { 
-            background: #0B6B81;
-            transform: translateY(-2px);
-        }
-        .predict-btn { 
-            background: #0B6B81; 
-            color: #B1B9C5;
-            border: 2px solid #0B6B81;
-        }
-        .predict-btn:hover { 
-            background: #12506F;
-            border-color: #12506F;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(11, 107, 129, 0.5);
-        }
-        .predict-btn:disabled { 
-            background: #1a3a4a; 
-            cursor: not-allowed; 
-            transform: none;
-            opacity: 0.6;
-        }
+        .save-btn { background: #0D2944; color: #B1B9C5; border: 2px solid #0B6B81; }
+        .save-btn:hover { background: #0B6B81; }
+        .predict-btn { background: #0B6B81; color: #B1B9C5; border: 2px solid #0B6B81; }
+        .predict-btn:hover { background: #12506F; transform: translateY(-3px); }
+        .predict-btn:disabled { background: #1a3a4a; cursor: not-allowed; opacity: 0.6; }
         .prediction-result {
             background: #F5F5F0;
             border: 2px solid #0B6B81;
@@ -487,54 +408,21 @@
             padding: 35px;
             margin-top: 30px;
             display: none;
-            box-shadow: 0 0 40px rgba(11, 107, 129, 0.3);
         }
-        .prediction-result h2 { 
-            color: #07101B; 
-            margin-bottom: 25px; 
-            text-align: center;
-            font-size: 2em;
-            text-shadow: 0 0 15px rgba(11, 107, 129, 0.3);
-        }
-        .prediction-section { 
-            margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(245, 245, 240, 0.8);
-            border-radius: 12px;
-            border-left: 4px solid #0B6B81;
-        }
-        .prediction-section h3 { 
-            color: #07101B; 
-            margin-bottom: 15px; 
-            font-size: 1.4em;
-        }
-        .prediction-section p { 
-            color: #07101B; 
-            line-height: 1.9; 
-            font-size: 16px; 
-            white-space: pre-wrap;
-            text-align: justify;
-        }
+        .prediction-result h2 { color: #07101B; margin-bottom: 25px; text-align: center; }
+        .prediction-section { margin-bottom: 30px; padding: 20px; background: rgba(245, 245, 240, 0.8); border-radius: 12px; border-left: 4px solid #0B6B81; }
+        .prediction-section h3 { color: #07101B; margin-bottom: 15px; font-size: 1.4em; }
+        .prediction-section p { color: #07101B; line-height: 1.9; font-size: 16px; white-space: pre-wrap; }
         .quote-section {
             margin-top: 30px;
             padding: 25px;
-            background: linear-gradient(135deg, rgba(11, 107, 129, 0.1) 0%, rgba(177, 185, 197, 0.2) 100%);
+            background: linear-gradient(135deg, rgba(11, 107, 129, 0.1), rgba(177, 185, 197, 0.2));
             border-radius: 12px;
             border: 2px dashed #0B6B81;
             text-align: center;
             font-style: italic;
             color: #07101B;
-            font-size: 16px;
-            line-height: 1.6;
         }
-        .quote-section::before {
-            content: '"';
-            font-size: 48px;
-            color: #0B6B81;
-            display: block;
-            margin-bottom: -20px;
-        }
-        .free-card-container { position: absolute; }
         .loading-overlay {
             display: none;
             position: fixed;
@@ -546,24 +434,10 @@
             align-items: center;
             flex-direction: column;
             gap: 30px;
-            backdrop-filter: blur(10px);
         }
         .loading-overlay.active { display: flex; }
-        .loading-text {
-            color: #B1B9C5;
-            font-size: 24px;
-            text-align: center;
-            animation: fadeInOut 2s infinite;
-        }
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-        .account-modal {
-            max-width: 900px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
+        .loading-text { color: #B1B9C5; font-size: 24px; animation: fadeInOut 2s infinite; }
+        @keyframes fadeInOut { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
         .saved-reading {
             background: #F5F5F0;
             border: 2px solid #0B6B81;
@@ -572,17 +446,8 @@
             margin-bottom: 20px;
             color: #07101B;
         }
-        .saved-reading h4 {
-            color: #07101B;
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-        .saved-reading .date {
-            color: #0B6B81;
-            font-size: 12px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
+        .saved-reading h4 { color: #07101B; margin-bottom: 10px; }
+        .saved-reading .date { color: #0B6B81; font-size: 12px; margin-bottom: 10px; font-weight: bold; }
         .saved-reading .cards-info {
             background: rgba(11, 107, 129, 0.1);
             padding: 10px;
@@ -597,8 +462,6 @@
             background: #F5F5F0;
             color: #07101B;
             border: 1px solid #0B6B81;
-            border-radius: 5px;
-            padding: 10px;
         }
         .delete-btn {
             background: #800B1F;
@@ -609,9 +472,7 @@
             cursor: pointer;
             margin-top: 10px;
         }
-        .delete-btn:hover {
-            background: #A01030;
-        }
+        .delete-btn:hover { background: #A01030; }
     </style>
 </head>
 <body>
@@ -624,36 +485,36 @@
         <div class="controls">
             <select id="spreadType" onchange="changeSpread()">
                 <option value="three">Три в ряд</option>
-                <option value="weekly">Недельный расклад (5 карт)</option>
-                <option value="yearly">Расклад на год (12 карт)</option>
+                <option value="weekly">Недельный расклад</option>
+                <option value="yearly">Расклад на год</option>
                 <option value="celtic">Кельтский крест</option>
                 <option value="station">Вокзал для двоих</option>
                 <option value="free">Свободный расклад</option>
             </select>
-            <button onclick="toggleLock()" id="lockBtn">🔓 Открепить карты</button>
-            <button onclick="clearTable()">🗑 Очистить стол</button>
+            <button onclick="toggleLock()" id="lockBtn">🔓 Открепить</button>
+            <button onclick="clearTable()">🗑 Очистить</button>
         </div>
 
         <div class="workspace">
             <div class="deck">
                 <h2>Колода</h2>
                 <div class="deck-card" onclick="drawCard()">
-                    <img src="таро/Рубашка карт.jpg" alt="Рубашка карты">
+                    <img src="Рубашка карт.jpg" alt="Рубашка">
                 </div>
-                <p style="margin-top: 10px; font-size: 12px; color: #B1B9C5;">Нажми, чтобы вытянуть карту</p>
+                <p style="margin-top: 10px; font-size: 12px;">Нажми для карты</p>
                 
                 <div class="candle-container">
-                    <div class="candle" id="candle">
+                    <div class="candle">
                         <div class="flame" id="flame"></div>
                     </div>
-                    <div class="lighter" id="lighter" onclick="lightCandle()">🔥 Зажечь</div>
+                    <div class="lighter" id="lighter" onclick="toggleCandle()">🔥 Зажечь</div>
                 </div>
             </div>
 
             <div class="table-container">
                 <div class="table">
                     <h2 id="spreadName">Три в ряд</h2>
-                    <div class="spread-layout-wrapper" id="spreadWrapper">
+                    <div class="spread-layout-wrapper">
                         <div class="spread-layout" id="spreadLayout"></div>
                     </div>
                 </div>
@@ -663,47 +524,43 @@
         <button class="save-spread-btn" onclick="showQuestionForm()">💾 Сохранить расклад</button>
 
         <div class="question-form" id="questionForm" style="display: none;">
-            <h2>📝 Введи свой вопрос</h2>
-
+            <h2>📝 Введи вопрос</h2>
             <div class="form-group">
-                <label for="question">Вопрос:</label>
+                <label>Вопрос:</label>
                 <div class="input-with-voice">
-                    <textarea id="question" placeholder="Напиши свой вопрос или нажми кнопку микрофона..."></textarea>
-                    <button class="voice-btn" onclick="startVoiceRecognition('question', this)">🎤 Голос</button>
+                    <textarea id="question" placeholder="Напиши вопрос..."></textarea>
+                    <button class="voice-btn" onclick="startVoiceRecognition('question', this)">🎤</button>
                 </div>
             </div>
-
             <div class="form-group">
-                <label for="context">Контекст вопроса:</label>
+                <label>Контекст:</label>
                 <div class="input-with-voice">
-                    <textarea id="context" placeholder="Добавь контекст (необязательно)..."></textarea>
-                    <button class="voice-btn" onclick="startVoiceRecognition('context', this)">🎤 Голос</button>
+                    <textarea id="context" placeholder="Дополнительно..."></textarea>
+                    <button class="voice-btn" onclick="startVoiceRecognition('context', this)">🎤</button>
                 </div>
             </div>
-
             <div class="checkbox-group">
                 <input type="checkbox" id="useHistory">
-                <label for="useHistory">Учитывать предыдущие расклады</label>
+                <label>Учитывать предыдущие расклады</label>
             </div>
-
             <div class="form-buttons">
-                <button class="save-btn" onclick="saveQuestion()">💾 Сохранить текст</button>
-                <button class="predict-btn" id="predictBtn" onclick="getPrediction()">🔮 Получить предсказание</button>
+                <button class="save-btn" onclick="saveQuestion()">💾 Сохранить</button>
+                <button class="predict-btn" id="predictBtn" onclick="getPrediction()">🔮 Получить</button>
             </div>
         </div>
 
         <div class="prediction-result" id="predictionResult">
-            <h2>🔮 Твоё предсказание 🔮</h2>
+            <h2>🔮 Предсказание</h2>
             <div class="prediction-section">
                 <h3>✨ Краткий ответ:</h3>
                 <p id="shortAnswer"></p>
             </div>
             <div class="prediction-section">
-                <h3>📖 Подробный ответ:</h3>
+                <h3>📖 Подробно:</h3>
                 <p id="detailedAnswer"></p>
             </div>
             <div class="prediction-section">
-                <h3>🔮 Описание расклада:</h3>
+                <h3>🔮 Расклад:</h3>
                 <p id="spreadDescription"></p>
             </div>
             <div class="quote-section" id="quoteSection"></div>
@@ -714,53 +571,34 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h3>Выбери карту</h3>
-            <select id="cardSelect">
-                <option value="">-- Выбери карту --</option>
-            </select>
-            <button onclick="confirmCardSelection()" style="margin-top: 15px; width: 100%; padding: 12px; background: #0B6B81; color: #B1B9C5; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px;">Подтвердить</button>
+            <select id="cardSelect"><option value="">-- Выбери --</option></select>
+            <button onclick="confirmCardSelection()" style="margin-top: 15px; width: 100%; padding: 12px; background: #0B6B81; color: #B1B9C5; border: none; border-radius: 8px; cursor: pointer;">Подтвердить</button>
         </div>
     </div>
 
     <div id="accountModal" class="modal">
-        <div class="modal-content account-modal">
+        <div class="modal-content">
             <span class="close-modal" onclick="closeAccount()">&times;</span>
-            <h3>👤 Личный кабинет таролога</h3>
+            <h3>👤 Личный кабинет</h3>
             <div id="savedReadings"></div>
         </div>
     </div>
 
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="candle" style="transform: scale(1.5);">
-            <div class="flame lit"></div>
-        </div>
+        <div class="candle" style="transform: scale(1.5);"><div class="flame lit"></div></div>
         <div class="loading-text">Ждём ответ от Высших сил...</div>
     </div>
 
     <script>
-        let cardCounter = 0;
-        let currentCardElement = null;
-        let currentSpread = 'three';
-        let isLocked = false;
-        let nextPositionIndex = 0;
-        let recognition = null;
-        let freeCardCounter = 0;
-        let candleLit = false;
+        let cardCounter = 0, currentCardElement = null, currentSpread = 'three', isLocked = false;
+        let nextPositionIndex = 0, recognition = null, freeCardCounter = 0, candleLit = false;
 
-        const quotes = [
-            "Карты лишь показывают путь, но идти по нему тебе.",
-            "Судьба любит смелых. Доверься своему сердцу.",
-            "В каждой карте скрыта мудрость веков.",
-            "Будущее не предопределено — ты создаёшь его сам.",
-            "Звёзды склоняют, но не принуждают.",
-            "Истина часто скрыта за завесой очевидного.",
-            "Доверься потоку жизни, и он приведёт тебя туда, где ты должен быть.",
-            "Каждый конец — это новое начало."
-        ];
+        const quotes = ["Карты показывают путь, но идёшь ты.", "Судьба любит смелых.", "В каждой карте — мудрость веков."];
 
         const tarotCards = [
-            { name: "0 - Дурак (Шут)", file: "0 Дурак, Шут.jpg" },
+            { name: "0 - Дурак", file: "0 Дурак, Шут.jpg" },
             { name: "I - Маг", file: "01 Маг.jpg" },
-            { name: "II - Верховная Жрица", file: "02 Верховная Жрица.jpg" },
+            { name: "II - Жрица", file: "02 Верховная Жрица.jpg" },
             { name: "III - Императрица", file: "03 Императрица.jpg" },
             { name: "IV - Император", file: "04 Император.jpg" },
             { name: "V - Иерофант", file: "05 Иерофант.jpg" },
@@ -768,7 +606,7 @@
             { name: "VII - Колесница", file: "07 Колесница.jpg" },
             { name: "VIII - Сила", file: "08 Сила.jpg" },
             { name: "IX - Отшельник", file: "09 Отшельник.jpg" },
-            { name: "X - Колесо Фортуны", file: "10 Колесо Фортуны.jpg" },
+            { name: "X - Колесо", file: "10 Колесо Фортуны.jpg" },
             { name: "XI - Справедливость", file: "11 Справедливость.jpg" },
             { name: "XII - Повешенный", file: "12 Повешенный.jpg" },
             { name: "XIII - Смерть", file: "13 Смерть.jpg" },
@@ -781,57 +619,57 @@
             { name: "XX - Суд", file: "20 Суд.jpg" },
             { name: "XXI - Мир", file: "21 Мир.jpg" },
             { name: "Туз Жезлов", file: "Туз жезлов.jpg" },
-            { name: "Двойка Жезлов", file: "2 жезлов.jpg" },
-            { name: "Тройка Жезлов", file: "3 жезлов.jpg" },
-            { name: "Четвёрка Жезлов", file: "4 жезлов.jpg" },
-            { name: "Пятёрка Жезлов", file: "5 жезлов.jpg" },
-            { name: "Шестёрка Жезлов", file: "6 жезлов.jpg" },
-            { name: "Семёрка Жезлов", file: "7 жезлов.jpg" },
-            { name: "Восьмёрка Жезлов", file: "8 жезлов.jpg" },
-            { name: "Девятка Жезлов", file: "9 жезлов.jpg" },
-            { name: "Десятка Жезлов", file: "10 жезлов.jpg" },
+            { name: "2 Жезлов", file: "2 жезлов.jpg" },
+            { name: "3 Жезлов", file: "3 жезлов.jpg" },
+            { name: "4 Жезлов", file: "4 жезлов.jpg" },
+            { name: "5 Жезлов", file: "5 жезлов.jpg" },
+            { name: "6 Жезлов", file: "6 жезлов.jpg" },
+            { name: "7 Жезлов", file: "7 жезлов.jpg" },
+            { name: "8 Жезлов", file: "8 жезлов.jpg" },
+            { name: "9 Жезлов", file: "9 жезлов.jpg" },
+            { name: "10 Жезлов", file: "10 жезлов.jpg" },
             { name: "Паж Жезлов", file: "Паж жезлов.jpg" },
             { name: "Рыцарь Жезлов", file: "Рыцарь жезлов.jpg" },
             { name: "Королева Жезлов", file: "Королева жезлов.jpg" },
             { name: "Король Жезлов", file: "Король жезлов.jpg" },
             { name: "Туз Мечей", file: "Туз мечей.jpg" },
-            { name: "Двойка Мечей", file: "2 мечей.jpg" },
-            { name: "Тройка Мечей", file: "3 мечей.jpg" },
-            { name: "Четвёрка Мечей", file: "4 мечей.jpg" },
-            { name: "Пятёрка Мечей", file: "5 мечей.jpg" },
-            { name: "Шестёрка Мечей", file: "6 мечей.jpg" },
-            { name: "Семёрка Мечей", file: "7 мечей.jpg" },
-            { name: "Восьмёрка Мечей", file: "8 мечей.jpg" },
-            { name: "Девятка Мечей", file: "9 мечей.jpg" },
-            { name: "Десятка Мечей", file: "10 мечей.jpg" },
+            { name: "2 Мечей", file: "2 мечей.jpg" },
+            { name: "3 Мечей", file: "3 мечей.jpg" },
+            { name: "4 Мечей", file: "4 мечей.jpg" },
+            { name: "5 Мечей", file: "5 мечей.jpg" },
+            { name: "6 Мечей", file: "6 мечей.jpg" },
+            { name: "7 Мечей", file: "7 мечей.jpg" },
+            { name: "8 Мечей", file: "8 мечей.jpg" },
+            { name: "9 Мечей", file: "9 мечей.jpg" },
+            { name: "10 Мечей", file: "10 мечей.jpg" },
             { name: "Паж Мечей", file: "Паж мечей.jpg" },
             { name: "Рыцарь Мечей", file: "Рыцарь мечей.jpg" },
             { name: "Королева Мечей", file: "Королева мечей.jpg" },
             { name: "Король Мечей", file: "Король мечей.jpg" },
             { name: "Туз Чаш", file: "Туз чаш.jpg" },
-            { name: "Двойка Чаш", file: "2 чаш.jpg" },
-            { name: "Тройка Чаш", file: "3 чаш.jpg" },
-            { name: "Четвёрка Чаш", file: "4 чаш.jpg" },
-            { name: "Пятёрка Чаш", file: "5 чаш.jpg" },
-            { name: "Шестёрка Чаш", file: "6 чаш.jpg" },
-            { name: "Семёрка Чаш", file: "7 чаш.jpg" },
-            { name: "Восьмёрка Чаш", file: "8 чаш.jpg" },
-            { name: "Девятка Чаш", file: "9 чаш.jpg" },
-            { name: "Десятка Чаш", file: "10 чаш.jpg" },
+            { name: "2 Чаш", file: "2 чаш.jpg" },
+            { name: "3 Чаш", file: "3 чаш.jpg" },
+            { name: "4 Чаш", file: "4 чаш.jpg" },
+            { name: "5 Чаш", file: "5 чаш.jpg" },
+            { name: "6 Чаш", file: "6 чаш.jpg" },
+            { name: "7 Чаш", file: "7 чаш.jpg" },
+            { name: "8 Чаш", file: "8 чаш.jpg" },
+            { name: "9 Чаш", file: "9 чаш.jpg" },
+            { name: "10 Чаш", file: "10 чаш.jpg" },
             { name: "Паж Чаш", file: "Паж чаш.jpg" },
             { name: "Рыцарь Чаш", file: "Рыцарь чаш.jpg" },
             { name: "Королева Чаш", file: "Королева чаш.jpg" },
             { name: "Король Чаш", file: "Король чаш.jpg" },
             { name: "Туз Пентаклей", file: "Туз пентаклей.jpg" },
-            { name: "Двойка Пентаклей", file: "2 пентаклей.jpg" },
-            { name: "Тройка Пентаклей", file: "3 пентаклей.jpg" },
-            { name: "Четвёрка Пентаклей", file: "4 пентаклей.jpg" },
-            { name: "Пятёрка Пентаклей", file: "5 пентаклей.jpg" },
-            { name: "Шестёрка Пентаклей", file: "6 пентаклей.jpg" },
-            { name: "Семёрка Пентаклей", file: "7 пентаклей.jpg" },
-            { name: "Восьмёрка Пентаклей", file: "8 пентаклей.jpg" },
-            { name: "Девятка Пентаклей", file: "9 пентаклей.jpg" },
-            { name: "Десятка Пентаклей", file: "10 пентаклей.jpg" },
+            { name: "2 Пентаклей", file: "2 пентаклей.jpg" },
+            { name: "3 Пентаклей", file: "3 пентаклей.jpg" },
+            { name: "4 Пентаклей", file: "4 пентаклей.jpg" },
+            { name: "5 Пентаклей", file: "5 пентаклей.jpg" },
+            { name: "6 Пентаклей", file: "6 пентаклей.jpg" },
+            { name: "7 Пентаклей", file: "7 пентаклей.jpg" },
+            { name: "8 Пентаклей", file: "8 пентаклей.jpg" },
+            { name: "9 Пентаклей", file: "9 пентаклей.jpg" },
+            { name: "10 Пентаклей", file: "10 пентаклей.jpg" },
             { name: "Паж Пентаклей", file: "Паж пентаклей.jpg" },
             { name: "Рыцарь Пентаклей", file: "Рыцарь пентаклей.jpg" },
             { name: "Королева Пентаклей", file: "Королева пентаклей.jpg" },
@@ -840,152 +678,99 @@
 
         const cardSelect = document.getElementById('cardSelect');
         tarotCards.forEach(card => {
-            const option = document.createElement('option');
-            option.value = card.file;
-            option.textContent = card.name;
-            cardSelect.appendChild(option);
+            const opt = document.createElement('option');
+            opt.value = card.file;
+            opt.textContent = card.name;
+            cardSelect.appendChild(opt);
         });
 
         const spreads = {
-            three: {
-                name: "Три в ряд",
-                positions: [
-                    { label: "Прошлое", row: 0, leftPct: 10 },
-                    { label: "Настоящее", row: 0, leftPct: 40 },
-                    { label: "Будущее", row: 0, leftPct: 70 }
-                ]
-            },
-            weekly: {
-                name: "Недельный расклад",
-                positions: [
-                    { label: "Понедельник", row: 0, leftPct: 5 },
-                    { label: "Вторник", row: 0, leftPct: 24 },
-                    { label: "Среда", row: 0, leftPct: 43 },
-                    { label: "Четверг", row: 0, leftPct: 62 },
-                    { label: "Пятница", row: 0, leftPct: 81 }
-                ]
-            },
-            yearly: {
-                name: "Расклад на год",
-                positions: [
-                    { label: "Январь", row: 0, leftPct: 3 },
-                    { label: "Февраль", row: 0, leftPct: 19 },
-                    { label: "Март", row: 0, leftPct: 35 },
-                    { label: "Апрель", row: 0, leftPct: 51 },
-                    { label: "Май", row: 0, leftPct: 67 },
-                    { label: "Июнь", row: 0, leftPct: 83 },
-                    { label: "Июль", row: 1, leftPct: 3 },
-                    { label: "Август", row: 1, leftPct: 19 },
-                    { label: "Сентябрь", row: 1, leftPct: 35 },
-                    { label: "Октябрь", row: 1, leftPct: 51 },
-                    { label: "Ноябрь", row: 1, leftPct: 67 },
-                    { label: "Декабрь", row: 1, leftPct: 83 }
-                ]
-            },
-            celtic: {
-                name: "Кельтский крест",
-                positions: [
-                    { label: "1. Суть ситуации", row: 0, leftPct: 30 },
-                    { label: "2. Препятствие", row: 0, leftPct: 43 },
-                    { label: "3. Основа", row: 1, leftPct: 30 },
-                    { label: "4. Прошлое", row: 0, leftPct: 10 },
-                    { label: "5. Возможный исход", row: 0, leftPct: 55 },
-                    { label: "6. Ближайшее будущее", row: 0, leftPct: 72 },
-                    { label: "7. Ваше отношение", row: 1, leftPct: 72 },
-                    { label: "8. Внешнее влияние", row: 2, leftPct: 72 },
-                    { label: "9. Надежды и страхи", row: 3, leftPct: 72 },
-                    { label: "10. Итог", row: 0, leftPct: 87 }
-                ]
-            },
-            station: {
-                name: "Вокзал для двоих",
-                positions: [
-                    { label: "1. Вы", row: 1, leftPct: 5 },
-                    { label: "2. Партнёр", row: 1, leftPct: 80 },
-                    { label: "3. Что объединяет", row: 0, leftPct: 42 },
-                    { label: "4. Что разделяет", row: 2, leftPct: 42 },
-                    { label: "5. Ваши мысли", row: 0, leftPct: 20 },
-                    { label: "6. Ваши чувства", row: 2, leftPct: 20 },
-                    { label: "7. Мысли партнёра", row: 0, leftPct: 64 },
-                    { label: "8. Чувства партнёра", row: 2, leftPct: 64 }
-                ]
-            }
+            three: { name: "Три в ряд", positions: [{label:"Прошлое",row:0,leftPct:10},{label:"Настоящее",row:0,leftPct:40},{label:"Будущее",row:0,leftPct:70}] },
+            weekly: { name: "Недельный", positions: [{label:"Пн",row:0,leftPct:5},{label:"Вт",row:0,leftPct:24},{label:"Ср",row:0,leftPct:43},{label:"Чт",row:0,leftPct:62},{label:"Пт",row:0,leftPct:81}] },
+            yearly: { name: "На год", positions: [
+                {label:"Янв",row:0,leftPct:3},{label:"Фев",row:0,leftPct:19},{label:"Мар",row:0,leftPct:35},{label:"Апр",row:0,leftPct:51},{label:"Май",row:0,leftPct:67},{label:"Июн",row:0,leftPct:83},
+                {label:"Июл",row:1,leftPct:3},{label:"Авг",row:1,leftPct:19},{label:"Сен",row:1,leftPct:35},{label:"Окт",row:1,leftPct:51},{label:"Ноя",row:1,leftPct:67},{label:"Дек",row:1,leftPct:83}
+            ]},
+            celtic: { name: "Кельтский крест", positions: [
+                {label:"1. Суть",row:0,leftPct:30},{label:"2. Препятствие",row:0,leftPct:43},{label:"3. Основа",row:1,leftPct:30},{label:"4. Прошлое",row:0,leftPct:10},
+                {label:"5. Исход",row:0,leftPct:55},{label:"6. Будущее",row:0,leftPct:72},{label:"7. Отношение",row:1,leftPct:72},{label:"8. Влияние",row:2,leftPct:72},
+                {label:"9. Надежды",row:3,leftPct:72},{label:"10. Итог",row:0,leftPct:87}
+            ]},
+            station: { name: "Вокзал для двоих", positions: [
+                {label:"1. Вы",row:1,leftPct:5},{label:"2. Партнёр",row:1,leftPct:80},{label:"3. Объединяет",row:0,leftPct:42},{label:"4. Разделяет",row:2,leftPct:42},
+                {label:"5. Мысли",row:0,leftPct:20},{label:"6. Чувства",row:2,leftPct:20},{label:"7. Мысли партнёра",row:0,leftPct:64},{label:"8. Чувства партнёра",row:2,leftPct:64}
+            ]}
         };
 
-        const CARD_HEIGHT = 180;
-        const CLARIFIER_HEIGHT = 120;
-        const CLARIFIER_GAP = 8;
-        const ROW_GAP = 30;
-        const CONTROLS_HEIGHT = 50;
-
-        function lightCandle() {
-            if (!candleLit) {
-                candleLit = true;
-                document.getElementById('flame').classList.add('lit');
-                document.getElementById('lighter').classList.add('lit');
-                document.getElementById('lighter').textContent = '🔥 Зажжена';
+        function toggleCandle() {
+            candleLit = !candleLit;
+            const flame = document.getElementById('flame');
+            const lighter = document.getElementById('lighter');
+            if (candleLit) {
+                flame.classList.add('lit');
+                lighter.classList.add('lit');
+                lighter.textContent = '🔥 Погасить';
+            } else {
+                flame.classList.remove('lit');
+                lighter.classList.remove('lit');
+                lighter.textContent = '🔥 Зажечь';
             }
         }
 
-        function getPositionHeight(positionIndex) {
-            const clarifiersDiv = document.getElementById(`clarifiers-${positionIndex}`);
-            const clarifierCount = clarifiersDiv ? clarifiersDiv.querySelectorAll('.clarifier-card').length : 0;
-            return CARD_HEIGHT + CONTROLS_HEIGHT + (clarifierCount * (CLARIFIER_HEIGHT + CLARIFIER_GAP));
+        function getPositionHeight(idx) {
+            const div = document.getElementById(`clarifiers-${idx}`);
+            const count = div ? div.querySelectorAll('.clarifier-card').length : 0;
+            return 180 + 50 + (count * 128);
         }
 
         function recalculatePositions() {
             if (currentSpread === 'free') return;
             const positions = spreads[currentSpread].positions;
             const rowHeights = {};
-            positions.forEach((pos, index) => {
+            positions.forEach((pos, i) => {
                 if (!rowHeights[pos.row]) rowHeights[pos.row] = 0;
-                const height = getPositionHeight(index);
-                if (height > rowHeights[pos.row]) rowHeights[pos.row] = height;
+                const h = getPositionHeight(i);
+                if (h > rowHeights[pos.row]) rowHeights[pos.row] = h;
             });
-            let currentTop = 10;
+            let top = 10;
             const rowTops = {};
-            const sortedRows = Object.keys(rowHeights).map(Number).sort((a, b) => a - b);
-            sortedRows.forEach(row => {
-                rowTops[row] = currentTop;
-                currentTop += rowHeights[row] + ROW_GAP;
+            Object.keys(rowHeights).sort().forEach(row => {
+                rowTops[row] = top;
+                top += rowHeights[row] + 30;
             });
-            positions.forEach((pos, index) => {
-                const positionDiv = document.getElementById(`position-${index}`);
-                if (positionDiv) {
-                    positionDiv.style.left = pos.leftPct + '%';
-                    positionDiv.style.top = rowTops[pos.row] + 'px';
+            positions.forEach((pos, i) => {
+                const div = document.getElementById(`position-${i}`);
+                if (div) {
+                    div.style.left = pos.leftPct + '%';
+                    div.style.top = rowTops[pos.row] + 'px';
                 }
             });
-            const layout = document.getElementById('spreadLayout');
-            layout.style.minHeight = currentTop + 'px';
+            document.getElementById('spreadLayout').style.minHeight = top + 'px';
         }
 
         function adjustLayoutScale() {
-            const wrapper = document.getElementById('spreadWrapper');
+            const wrapper = document.querySelector('.spread-layout-wrapper');
             const layout = document.getElementById('spreadLayout');
             if (!wrapper || !layout) return;
             layout.style.transform = 'scale(1)';
-            wrapper.style.height = 'auto';
-            const wrapperWidth = wrapper.clientWidth;
-            const layoutWidth = layout.scrollWidth;
-            if (layoutWidth > wrapperWidth) {
-                const scale = wrapperWidth / layoutWidth;
-                layout.style.transform = `scale(${scale})`;
-                layout.style.transformOrigin = 'top left';
-                wrapper.style.height = (layout.offsetHeight * scale) + 'px';
+            const w = wrapper.clientWidth;
+            const l = layout.scrollWidth;
+            if (l > w) {
+                const s = w / l;
+                layout.style.transform = `scale(${s})`;
+                wrapper.style.height = (layout.offsetHeight * s) + 'px';
             } else {
-                layout.style.transform = 'scale(1)';
                 wrapper.style.height = layout.offsetHeight + 'px';
             }
         }
 
         window.onload = function() {
-            const savedQuestion = localStorage.getItem('tarot_question');
-            const savedContext = localStorage.getItem('tarot_context');
-            const savedUseHistory = localStorage.getItem('tarot_useHistory');
-            if (savedQuestion) document.getElementById('question').value = savedQuestion;
-            if (savedContext) document.getElementById('context').value = savedContext;
-            if (savedUseHistory) document.getElementById('useHistory').checked = savedUseHistory === 'true';
+            const q = localStorage.getItem('tarot_question');
+            const c = localStorage.getItem('tarot_context');
+            const h = localStorage.getItem('tarot_useHistory');
+            if (q) document.getElementById('question').value = q;
+            if (c) document.getElementById('context').value = c;
+            if (h) document.getElementById('useHistory').checked = h === 'true';
             renderSpread();
         };
 
@@ -996,211 +781,131 @@
             cardCounter = 0;
             nextPositionIndex = 0;
             freeCardCounter = 0;
-            document.getElementById('spreadName').textContent = spreads[currentSpread] ? spreads[currentSpread].name : "Свободный расклад";
+            document.getElementById('spreadName').textContent = spreads[currentSpread].name;
             renderSpread();
         }
 
         function renderSpread() {
             const layout = document.getElementById('spreadLayout');
             layout.innerHTML = '';
-            layout.style.transform = 'scale(1)';
             if (currentSpread === 'free') {
-                const freeContainer = document.createElement('div');
-                freeContainer.className = 'free-spread-container';
-                freeContainer.id = 'freeContainer';
-                layout.appendChild(freeContainer);
+                const div = document.createElement('div');
+                div.className = 'free-spread-container';
+                div.id = 'freeContainer';
+                layout.appendChild(div);
             } else {
-                const positions = spreads[currentSpread].positions;
-                positions.forEach((pos, index) => {
-                    const positionDiv = document.createElement('div');
-                    positionDiv.className = 'spread-position';
-                    positionDiv.id = `position-${index}`;
-                    positionDiv.innerHTML = `
+                spreads[currentSpread].positions.forEach((pos, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'spread-position';
+                    div.id = `position-${i}`;
+                    div.innerHTML = `
                         <div class="position-label">${pos.label}</div>
-                        <div class="placed-card" id="card-${index}" data-index="${index}">
-                            <img src="таро/Рубашка карт.jpg" alt="Пустая позиция">
+                        <div class="placed-card" id="card-${i}">
+                            <img src="Рубашка карт.jpg">
                             <div class="card-label">${pos.label}</div>
                             <div class="card-controls">
                                 <div class="card-controls-row">
-                                    <button onclick="event.stopPropagation(); flipCardInPosition(${index})">🔄 Перевернуть</button>
-                                    <button onclick="event.stopPropagation(); openCardModalForPosition(${index})">🃏 Выбрать</button>
+                                    <button onclick="event.stopPropagation();flipCardInPosition(${i})">🔄</button>
+                                    <button onclick="event.stopPropagation();openCardModalForPosition(${i})">🃏</button>
                                 </div>
                                 <div class="card-controls-row">
-                                    <button class="clarify-btn" onclick="event.stopPropagation(); addClarifier(${index})">+ Пояснение</button>
+                                    <button class="clarify-btn" onclick="event.stopPropagation();addClarifier(${i})">+ Пояснение</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="clarifiers-container" id="clarifiers-${index}"></div>
+                        <div class="clarifiers-container" id="clarifiers-${i}"></div>
                     `;
-                    layout.appendChild(positionDiv);
-                    makeDraggable(document.getElementById(`card-${index}`));
+                    layout.appendChild(div);
                 });
-                setTimeout(() => {
-                    recalculatePositions();
-                    adjustLayoutScale();
-                }, 50);
+                setTimeout(() => { recalculatePositions(); adjustLayoutScale(); }, 50);
             }
         }
 
         function drawCard() {
             if (currentSpread === 'free') {
                 addFreeCard();
+            } else if (nextPositionIndex < spreads[currentSpread].positions.length) {
+                openCardModalForPosition(nextPositionIndex);
             } else {
-                if (nextPositionIndex < spreads[currentSpread].positions.length) {
-                    openCardModalForPosition(nextPositionIndex);
-                } else {
-                    alert('Все позиции заполнены! Наведи на карту и нажми "+ Пояснение".');
-                }
+                alert('Все позиции заполнены!');
             }
         }
 
         function addFreeCard() {
             const container = document.getElementById('freeContainer');
             if (!container) return;
-            const cardContainer = document.createElement('div');
-            cardContainer.className = 'free-card-container';
-            cardContainer.id = `free-card-${freeCardCounter}`;
-            cardContainer.style.left = (Math.random() * 400 + 30) + 'px';
-            cardContainer.style.top = (Math.random() * 250 + 20) + 'px';
-            const currentIdx = freeCardCounter;
-            cardContainer.innerHTML = `
-                <div class="placed-card">
-                    <img src="таро/Рубашка карт.jpg" alt="Карта">
-                    <div class="card-controls">
-                        <div class="card-controls-row">
-                            <button onclick="event.stopPropagation(); flipCard(this)">🔄 Перевернуть</button>
-                            <button onclick="event.stopPropagation(); openCardModal(this)">🃏 Выбрать</button>
-                        </div>
-                        <div class="card-controls-row">
-                            <button class="clarify-btn" onclick="event.stopPropagation(); addFreeClarifier(${currentIdx})">+ Пояснение</button>
-                        </div>
-                    </div>
+            const div = document.createElement('div');
+            div.className = 'placed-card';
+            div.style.position = 'absolute';
+            div.style.left = (Math.random() * 400 + 30) + 'px';
+            div.style.top = (Math.random() * 250 + 20) + 'px';
+            div.innerHTML = `
+                <img src="Рубашка карт.jpg">
+                <div class="card-controls">
+                    <button onclick="flipCard(this)">🔄</button>
+                    <button onclick="openCardModal(this)">🃏</button>
                 </div>
-                <div class="clarifiers-container" id="free-clarifiers-${currentIdx}"></div>
             `;
-            container.appendChild(cardContainer);
-            makeDraggable(cardContainer);
+            container.appendChild(div);
             freeCardCounter++;
-            setTimeout(adjustLayoutScale, 50);
         }
 
-        function addClarifier(positionIndex) {
-            const clarifiersDiv = document.getElementById(`clarifiers-${positionIndex}`);
-            if (!clarifiersDiv) return;
-            const clarifier = document.createElement('div');
-            clarifier.className = 'clarifier-card';
-            clarifier.innerHTML = `
-                <img src="таро/Рубашка карт.jpg" alt="Пояснение">
-                <div class="card-controls">
-                    <div class="card-controls-row">
-                        <button onclick="event.stopPropagation(); flipClarifier(this)">🔄 Перевернуть</button>
-                        <button onclick="event.stopPropagation(); openClarifierModal(this)">🃏 Выбрать</button>
-                    </div>
-                </div>
-            `;
-            clarifiersDiv.appendChild(clarifier);
-            setTimeout(() => {
-                recalculatePositions();
-                adjustLayoutScale();
-            }, 50);
+        function addClarifier(idx) {
+            const div = document.getElementById(`clarifiers-${idx}`);
+            if (!div) return;
+            const c = document.createElement('div');
+            c.className = 'clarifier-card';
+            c.innerHTML = `<img src="Рубашка карт.jpg"><div class="card-controls"><button onclick="flipCard(this)">🔄</button><button onclick="openCardModal(this)">🃏</button></div>`;
+            div.appendChild(c);
+            setTimeout(() => { recalculatePositions(); adjustLayoutScale(); }, 50);
         }
 
-        function addFreeClarifier(cardIndex) {
-            const clarifiersDiv = document.getElementById(`free-clarifiers-${cardIndex}`);
-            if (!clarifiersDiv) return;
-            const clarifier = document.createElement('div');
-            clarifier.className = 'clarifier-card';
-            clarifier.innerHTML = `
-                <img src="таро/Рубашка карт.jpg" alt="Пояснение">
-                <div class="card-controls">
-                    <div class="card-controls-row">
-                        <button onclick="event.stopPropagation(); flipClarifier(this)">🔄 Перевернуть</button>
-                        <button onclick="event.stopPropagation(); openClarifierModal(this)">🃏 Выбрать</button>
-                    </div>
-                </div>
-            `;
-            clarifiersDiv.appendChild(clarifier);
-        }
-
-        function makeDraggable(element) {
-            let isDragging = false;
-            let startX, startY, initialX, initialY;
-            element.addEventListener('mousedown', function(e) {
-                if (isLocked) return;
-                if (e.target.tagName === 'BUTTON' || e.target.tagName === 'SELECT') return;
-                isDragging = true;
-                startX = e.clientX;
-                startY = e.clientY;
-                initialX = element.offsetLeft;
-                initialY = element.offsetTop;
-                element.style.zIndex = 1000;
-            });
-            document.addEventListener('mousemove', function(e) {
-                if (!isDragging) return;
-                e.preventDefault();
-                element.style.left = (initialX + e.clientX - startX) + 'px';
-                element.style.top = (initialY + e.clientY - startY) + 'px';
-            });
-            document.addEventListener('mouseup', function() {
-                if (isDragging) {
-                    isDragging = false;
-                    element.style.zIndex = '';
-                    setTimeout(adjustLayoutScale, 10);
-                }
-            });
-        }
-
-        function flipCard(button) {
-            const card = button.closest('.placed-card');
+        function flipCard(btn) {
+            const card = btn.closest('.placed-card, .clarifier-card');
             if (card) card.classList.toggle('flipped');
         }
-        function flipClarifier(button) {
-            const card = button.closest('.clarifier-card');
+
+        function flipCardInPosition(idx) {
+            const card = document.getElementById(`card-${idx}`);
             if (card) card.classList.toggle('flipped');
         }
-        function flipCardInPosition(index) {
-            const card = document.getElementById(`card-${index}`);
-            if (card) card.classList.toggle('flipped');
-        }
-        function openCardModal(button) {
-            currentCardElement = button.closest('.placed-card');
+
+        function openCardModal(btn) {
+            currentCardElement = btn.closest('.placed-card, .clarifier-card');
             document.getElementById('cardModal').style.display = 'flex';
         }
-        function openClarifierModal(button) {
-            currentCardElement = button.closest('.clarifier-card');
+
+        function openCardModalForPosition(idx) {
+            currentCardElement = document.getElementById(`card-${idx}`);
+            nextPositionIndex = idx + 1;
             document.getElementById('cardModal').style.display = 'flex';
         }
-        function openCardModalForPosition(index) {
-            currentCardElement = document.getElementById(`card-${index}`);
-            nextPositionIndex = index + 1;
-            document.getElementById('cardModal').style.display = 'flex';
-        }
+
         function closeModal() {
             document.getElementById('cardModal').style.display = 'none';
             currentCardElement = null;
         }
+
         function confirmCardSelection() {
             if (!currentCardElement) return;
-            const selectedFile = document.getElementById('cardSelect').value;
-            if (selectedFile) {
+            const file = document.getElementById('cardSelect').value;
+            if (file) {
                 const img = currentCardElement.querySelector('img');
-                img.src = `таро/${encodeURIComponent(selectedFile)}`;
+                img.src = file;
                 const label = currentCardElement.querySelector('.card-label');
-                if (label) {
-                    label.textContent = document.getElementById('cardSelect').options[document.getElementById('cardSelect').selectedIndex].text;
-                }
+                if (label) label.textContent = document.getElementById('cardSelect').options[document.getElementById('cardSelect').selectedIndex].text;
             }
             closeModal();
         }
+
         function toggleLock() {
             isLocked = !isLocked;
-            document.getElementById('lockBtn').textContent = isLocked ? '🔒 Карты закреплены' : '🔓 Открепить карты';
-            document.querySelectorAll('.placed-card, .clarifier-card').forEach(card => {
-                card.classList.toggle('locked', isLocked);
-            });
+            document.getElementById('lockBtn').textContent = isLocked ? '🔒 Закреплено' : '🔓 Открепить';
+            document.querySelectorAll('.placed-card, .clarifier-card').forEach(c => c.classList.toggle('locked', isLocked));
         }
+
         function clearTable() {
-            if (confirm('Удалить все карты со стола?')) {
+            if (confirm('Очистить стол?')) {
                 cardCounter = 0;
                 nextPositionIndex = 0;
                 freeCardCounter = 0;
@@ -1211,329 +916,140 @@
                 renderSpread();
             }
         }
+
         function showQuestionForm() {
-            const form = document.getElementById('questionForm');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-            if (form.style.display === 'block') form.scrollIntoView({ behavior: 'smooth' });
+            const f = document.getElementById('questionForm');
+            f.style.display = f.style.display === 'none' ? 'block' : 'none';
+            if (f.style.display === 'block') f.scrollIntoView({behavior:'smooth'});
         }
+
         function saveQuestion() {
             localStorage.setItem('tarot_question', document.getElementById('question').value);
             localStorage.setItem('tarot_context', document.getElementById('context').value);
             localStorage.setItem('tarot_useHistory', document.getElementById('useHistory').checked);
-            alert('✅ Всё сохранено!');
+            alert('Сохранено!');
         }
-        function startVoiceRecognition(fieldId, button) {
-            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                alert('Голосовой ввод не поддерживается. Используй Chrome!');
-                return;
-            }
-            if (button.classList.contains('recording')) {
-                if (recognition) recognition.stop();
-                return;
-            }
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            recognition = new SpeechRecognition();
+
+        function startVoiceRecognition(fieldId, btn) {
+            if (!('webkitSpeechRecognition' in window)) { alert('Не поддерживается'); return; }
+            if (btn.classList.contains('recording')) { if (recognition) recognition.stop(); return; }
+            recognition = new webkitSpeechRecognition();
             recognition.lang = 'ru-RU';
             recognition.continuous = true;
             recognition.interimResults = true;
             const field = document.getElementById(fieldId);
-            let finalTranscript = field.value;
-            recognition.onstart = () => {
-                button.classList.add('recording');
-                button.textContent = '⏹ Стоп';
-            };
-            recognition.onresult = (event) => {
+            let final = field.value;
+            recognition.onstart = () => { btn.classList.add('recording'); btn.textContent = '⏹'; };
+            recognition.onresult = (e) => {
                 let interim = '';
-                for (let i = event.resultIndex; i < event.results.length; i++) {
-                    if (event.results[i].isFinal) finalTranscript += event.results[i][0].transcript;
-                    else interim += event.results[i][0].transcript;
+                for (let i = e.resultIndex; i < e.results.length; i++) {
+                    if (e.results[i].isFinal) final += e.results[i][0].transcript;
+                    else interim += e.results[i][0].transcript;
                 }
-                field.value = finalTranscript + interim;
+                field.value = final + interim;
             };
-            recognition.onerror = () => {
-                button.classList.remove('recording');
-                button.textContent = '🎤 Голос';
-            };
-            recognition.onend = () => {
-                button.classList.remove('recording');
-                button.textContent = '🎤 Голос';
-            };
+            recognition.onend = () => { btn.classList.remove('recording'); btn.textContent = '🎤'; };
             recognition.start();
         }
 
         function collectSpreadText() {
-            let text = `Тип расклада: ${spreads[currentSpread] ? spreads[currentSpread].name : 'Свободный'}\n\n`;
-            text += '=== КАРТЫ РАСКЛАДА ===\n\n';
-
+            let text = `Расклад: ${spreads[currentSpread].name}\n\n`;
             if (currentSpread === 'free') {
-                document.querySelectorAll('.free-card-container').forEach((container, i) => {
-                    const card = container.querySelector('.placed-card');
-                    const img = card ? card.querySelector('img') : null;
-                    const isFlipped = card ? card.classList.contains('flipped') : false;
-                    const cardName = getCardNameFromSrc(img ? img.src : '');
-                    text += `Карта ${i + 1}: ${cardName}\n`;
-                    text += `  Положение: ${isFlipped ? 'ПЕРЕВЁРНУТА' : 'Прямая'}\n`;
-                    const clarifiers = container.querySelectorAll('.clarifier-card');
-                    clarifiers.forEach((c, j) => {
-                        const cImg = c.querySelector('img');
-                        const cFlipped = c.classList.contains('flipped');
-                        const cName = getCardNameFromSrc(cImg ? cImg.src : '');
-                        text += `  Пояснение ${j + 1}: ${cName} (${cFlipped ? 'перевёрнута' : 'прямая'})\n`;
-                    });
-                    text += '\n';
+                document.querySelectorAll('.free-card-container .placed-card, #freeContainer .placed-card').forEach((card, i) => {
+                    const img = card.querySelector('img');
+                    const name = img ? img.src.split('/').pop().replace('.jpg','') : '?';
+                    text += `Карта ${i+1}: ${name} ${card.classList.contains('flipped')?'(перевёрнута)':''}\n`;
                 });
             } else {
-                const positions = spreads[currentSpread].positions;
-                positions.forEach((pos, i) => {
+                spreads[currentSpread].positions.forEach((pos, i) => {
                     const card = document.getElementById(`card-${i}`);
                     if (card) {
                         const img = card.querySelector('img');
-                        const isFlipped = card.classList.contains('flipped');
-                        const cardName = getCardNameFromSrc(img ? img.src : '');
-                        text += `Позиция "${pos.label}": ${cardName}\n`;
-                        text += `  Положение: ${isFlipped ? 'ПЕРЕВЁРНУТА' : 'Прямая'}\n`;
-                        const clarDiv = document.getElementById(`clarifiers-${i}`);
-                        if (clarDiv) {
-                            clarDiv.querySelectorAll('.clarifier-card').forEach((c, j) => {
-                                const cImg = c.querySelector('img');
-                                const cFlipped = c.classList.contains('flipped');
-                                const cName = getCardNameFromSrc(cImg ? cImg.src : '');
-                                text += `  Пояснение ${j + 1}: ${cName} (${cFlipped ? 'перевёрнута' : 'прямая'})\n`;
-                            });
-                        }
-                        text += '\n';
+                        const name = img ? img.src.split('/').pop().replace('.jpg','') : '?';
+                        text += `${pos.label}: ${name} ${card.classList.contains('flipped')?'(перевёрнута)':''}\n`;
                     }
                 });
             }
-
-            const suits = { wands: 0, swords: 0, cups: 0, pentacles: 0, major: 0 };
-            document.querySelectorAll('.placed-card img, .clarifier-card img').forEach(img => {
-                const name = getCardNameFromSrc(img.src);
-                if (name.includes('Жезл')) suits.wands++;
-                else if (name.includes('Меч')) suits.swords++;
-                else if (name.includes('Чаш')) suits.cups++;
-                else if (name.includes('Пентакл')) suits.pentacles++;
-                else if (name.includes('Дурак') || name.includes('Маг') || name.includes('Жрица') ||
-                         name.includes('Императрица') || name.includes('Император') || name.includes('Иерофант') ||
-                         name.includes('Влюбл') || name.includes('Колесн') || name.includes('Сила') ||
-                         name.includes('Отшельник') || name.includes('Колесо') || name.includes('Справед') ||
-                         name.includes('Повешен') || name.includes('Смерть') || name.includes('Умерен') ||
-                         name.includes('Дьявол') || name.includes('Башн') || name.includes('Звезда') ||
-                         name.includes('Луна') || name.includes('Солнце') || name.includes('Суд') ||
-                         name.includes('Мир')) suits.major++;
-            });
-            text += '\n=== СТАТИСТИКА РАСКЛАДА ===\n';
-            text += `Старшие арканы: ${suits.major}\n`;
-            text += `Жезлы: ${suits.wands}\n`;
-            text += `Мечи: ${suits.swords}\n`;
-            text += `Чаши: ${suits.cups}\n`;
-            text += `Пентакли: ${suits.pentacles}\n`;
-
             return text;
-        }
-
-        function getCardNameFromSrc(src) {
-            if (!src) return 'Неизвестная карта';
-            const file = decodeURIComponent(src.split('/').pop().replace('.jpg', ''));
-            const found = tarotCards.find(c => c.file.replace('.jpg', '') === file);
-            return found ? found.name : file;
-        }
-
-        function getHistoryText() {
-            if (!document.getElementById('useHistory').checked) return '';
-            const history = JSON.parse(localStorage.getItem('tarot_history') || '[]');
-            if (history.length === 0) return 'Предыдущих раскладов нет.';
-            let text = '=== ПРЕДЫДУЩИЕ РАСКЛАДЫ ===\n\n';
-            history.slice(-3).forEach((h, i) => {
-                text += `Расклад ${i + 1} (${h.date}):\n`;
-                text += `Вопрос: ${h.question}\n`;
-                text += `Краткий ответ: ${h.shortAnswer}\n\n`;
-            });
-            return text;
-        }
-
-        function cleanAIResponse(text) {
-            return text
-                .replace(/#{1,6}\s*/g, '')
-                .replace(/\*\*/g, '')
-                .replace(/\*/g, '')
-                .replace(/`/g, '')
-                .replace(/\|/g, '')
-                .replace(/---+/g, '')
-                .replace(/\n{3,}/g, '\n\n')
-                .trim();
         }
 
         async function getPrediction() {
             const question = document.getElementById('question').value.trim();
             const context = document.getElementById('context').value.trim();
-
-            if (!question) {
-                alert('Пожалуйста, введи вопрос!');
-                return;
-            }
-
+            if (!question) { alert('Введи вопрос!'); return; }
             const spreadText = collectSpreadText();
-            if (!spreadText.includes('Карта') && !spreadText.includes('Позиция')) {
-                alert('Сначала разложи хотя бы одну карту!');
-                return;
-            }
+            if (!spreadText.includes('Карта') && !spreadText.includes(':')) { alert('Разложи карты!'); return; }
 
-            const historyText = getHistoryText();
+            const prompt = `Ты — мудрая гадалка. Вопрос: ${question}\nКонтекст: ${context || 'нет'}\n\n${spreadText}\n\nОтвечай в формате:\n### 1) Краткий ответ\n[2-3 предложения]\n\n### 2) Подробный ответ\n[развёрнуто]\n\n### 3) Описание расклада\n[анализ карт]`;
 
-            const prompt = `Ты — мудрая потомственная гадалка с даром ясновидения. Говоришь мягко, загадочно, но точно. Используй образные выражения, метафоры, но будь конкретной в ответах.
-
-ВОПРОС КВЕРЕНТА:
-${question}
-
-КОНТЕКСТ:
-${context || '(не указан)'}
-
-РАСКЛАД:
-${spreadText}
-
-${historyText}
-
-Отвечай СТРОГО в формате трёх разделов. Используй ТОЛЬКО обычный текст, БЕЗ markdown, таблиц, списков, заголовков с # или *. Пиши плавным связным текстом.
-
-### 1) Краткий ответ
-Дай конкретный ответ на вопрос в 3-4 предложениях. Будь точной и мудрой.
-
-### 2) Подробный ответ
-Развернуто объясни, что карты говорят о ситуации. Используй образные выражения, но будь конкретной. Пиши как гадалка — мягко, но уверенно.
-
-### 3) Описание расклада
-Дай детальный анализ расклада плавным текстом (не списками!):
-- Трактовка каждой карты с учётом позиции и вопроса
-- Прямое или перевёрнутое положение и его значение
-- Преобладание масти (если есть)
-- Влияние старших арканов (если есть)
-- Взаимосвязи между картами
-- Общий совет карт
-
-Пиши на русском языке, как мудрая гадалка. БЕЗ таблиц, списков, заголовков с символами.`;
-
-            const predictBtn = document.getElementById('predictBtn');
-            predictBtn.disabled = true;
+            document.getElementById('predictBtn').disabled = true;
             document.getElementById('loadingOverlay').classList.add('active');
             document.getElementById('predictionResult').style.display = 'block';
-            document.getElementById('shortAnswer').textContent = '️ Зажигаем свечу...';
+            document.getElementById('shortAnswer').textContent = '⏳ Ждём...';
             document.getElementById('detailedAnswer').textContent = '';
             document.getElementById('spreadDescription').textContent = '';
-            document.getElementById('predictionResult').scrollIntoView({ behavior: 'smooth' });
 
             try {
-                const response = await fetch('https://text.pollinations.ai/openai', {
+                const res = await fetch('https://text.pollinations.ai/openai', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        model: 'openai',
-                        messages: [
-                            {
-                                role: 'system',
-                                content: 'Ты — мудрая потомственная гадалка. Отвечай на русском языке.'
-                            },
-                            {
-                                role: 'user',
-                                content: prompt
-                            }
-                        ],
-                        temperature: 0.7
-                    })
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({model:'openai', messages:[{role:'user', content:prompt}], temperature:0.7})
                 });
-
-                if (!response.ok) {
-                    throw new Error('Ошибка API: ' + response.status);
-                }
-
-                const data = await response.json();
-                const fullText = data.choices[0].message.content;
-                const cleanedText = cleanAIResponse(fullText);
-                const parsed = parseAIResponse(cleanedText);
-
-                document.getElementById('shortAnswer').textContent = parsed.short;
-                document.getElementById('detailedAnswer').textContent = parsed.detailed;
-                document.getElementById('spreadDescription').textContent = parsed.spread;
+                if (!res.ok) throw new Error(res.status);
+                const data = await res.json();
+                const text = data.choices[0].message.content;
                 
-                // Добавляем вдохновляющую цитату
-                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-                document.getElementById('quoteSection').textContent = randomQuote;
+                const short = text.match(/1\)\s*Краткий ответ[:\s]*([\s\S]*?)(?=2\)|$)/i);
+                const detailed = text.match(/2\)\s*Подробный ответ[:\s]*([\s\S]*?)(?=3\)|$)/i);
+                const spread = text.match(/3\)\s*Описание расклада[:\s]*([\s\S]*?)$/i);
+                
+                document.getElementById('shortAnswer').textContent = short ? short[1].trim() : text.substring(0,300);
+                document.getElementById('detailedAnswer').textContent = detailed ? detailed[1].trim() : '';
+                document.getElementById('spreadDescription').textContent = spread ? spread[1].trim() : '';
+                document.getElementById('quoteSection').textContent = quotes[Math.floor(Math.random()*quotes.length)];
 
                 // Сохраняем в историю
-                const history = JSON.parse(localStorage.getItem('tarot_history') || '[]');
+                const history = JSON.parse(localStorage.getItem('tarot_history')||'[]');
                 history.push({
                     date: new Date().toLocaleString('ru-RU'),
-                    question: question,
-                    context: context,
-                    shortAnswer: parsed.short,
-                    detailedAnswer: parsed.detailed,
-                    spreadDescription: parsed.spread,
-                    quote: randomQuote,
+                    question, context,
+                    shortAnswer: document.getElementById('shortAnswer').textContent,
+                    detailedAnswer: document.getElementById('detailedAnswer').textContent,
+                    spreadDescription: document.getElementById('spreadDescription').textContent,
                     cards: spreadText,
                     spreadType: currentSpread
                 });
                 localStorage.setItem('tarot_history', JSON.stringify(history));
 
-            } catch (error) {
-                console.error(error);
-                document.getElementById('shortAnswer').textContent = '❌ Ошибка: ' + error.message;
-                document.getElementById('detailedAnswer').textContent = 'Попробуй ещё раз или проверь интернет-соединение.';
-                document.getElementById('spreadDescription').textContent = '';
+            } catch(e) {
+                document.getElementById('shortAnswer').textContent = '❌ Ошибка: '+e.message;
             } finally {
                 document.getElementById('loadingOverlay').classList.remove('active');
-                predictBtn.disabled = false;
+                document.getElementById('predictBtn').disabled = false;
             }
-        }
-
-        function parseAIResponse(text) {
-            const result = { short: '', detailed: '', spread: '' };
-
-            const shortMatch = text.match(/1\)\s*Краткий ответ[:\s]*([\s\S]*?)(?=2\)|$)/i);
-            const detailedMatch = text.match(/2\)\s*Подробный ответ[:\s]*([\s\S]*?)(?=3\)|$)/i);
-            const spreadMatch = text.match(/3\)\s*Описание расклада[:\s]*([\s\S]*?)$/i);
-
-            result.short = shortMatch ? shortMatch[1].trim() : text.substring(0, 500);
-            result.detailed = detailedMatch ? detailedMatch[1].trim() : '';
-            result.spread = spreadMatch ? spreadMatch[1].trim() : '';
-
-            if (!result.detailed && !result.spread) {
-                const parts = text.split(/\n\n/);
-                result.short = parts[0] || text;
-                result.detailed = parts.slice(1, Math.ceil(parts.length / 2)).join('\n\n');
-                result.spread = parts.slice(Math.ceil(parts.length / 2)).join('\n\n');
-            }
-
-            return result;
         }
 
         function openAccount() {
             const modal = document.getElementById('accountModal');
-            const savedReadingsDiv = document.getElementById('savedReadings');
-            const history = JSON.parse(localStorage.getItem('tarot_history') || '[]');
-            
+            const div = document.getElementById('savedReadings');
+            const history = JSON.parse(localStorage.getItem('tarot_history')||'[]');
             if (history.length === 0) {
-                savedReadingsDiv.innerHTML = '<p style="text-align: center; color: #07101B;">Пока нет сохранённых раскладов</p>';
+                div.innerHTML = '<p style="text-align:center;color:#07101B">Нет сохранённых раскладов</p>';
             } else {
-                savedReadingsDiv.innerHTML = history.map((reading, index) => `
+                div.innerHTML = history.map((r,i) => `
                     <div class="saved-reading">
-                        <h4>Расклад #${index + 1} — ${reading.spreadType === 'three' ? 'Три в ряд' : reading.spreadType === 'weekly' ? 'Недельный' : reading.spreadType === 'yearly' ? 'На год' : reading.spreadType === 'celtic' ? 'Кельтский крест' : reading.spreadType === 'station' ? 'Вокзал для двоих' : 'Свободный'}</h4>
-                        <div class="date">${reading.date}</div>
-                        <p><strong>Вопрос:</strong> ${reading.question}</p>
-                        ${reading.context ? `<p><strong>Контекст:</strong> ${reading.context}</p>` : ''}
-                        <div class="cards-info">
-                            <strong>Карты расклада:</strong><br>
-                            ${reading.cards.replace(/\n/g, '<br>')}
-                        </div>
-                        <p><strong>Краткий ответ:</strong><br>${reading.shortAnswer}</p>
+                        <h4>Расклад #${i+1} — ${r.spreadType||'?'}</h4>
+                        <div class="date">${r.date}</div>
+                        <p><b>Вопрос:</b> ${r.question}</p>
+                        ${r.context?`<p><b>Контекст:</b> ${r.context}</p>`:''}
+                        <div class="cards-info"><b>Карты:</b><br>${r.cards.replace(/\n/g,'<br>')}</div>
+                        <p><b>Ответ:</b><br>${r.shortAnswer}</p>
                         <label>Заметки:</label>
-                        <textarea placeholder="Добавь свои заметки к этому раскладу..." onchange="saveNote(${index}, this.value)">${reading.note || ''}</textarea>
-                        <button class="delete-btn" onclick="deleteReading(${index})">🗑 Удалить расклад</button>
+                        <textarea placeholder="Заметки..." onchange="saveNote(${i},this.value)">${r.note||''}</textarea>
+                        <button class="delete-btn" onclick="deleteReading(${i})">🗑 Удалить</button>
                     </div>
                 `).join('');
             }
-            
             modal.style.display = 'flex';
         }
 
@@ -1541,26 +1057,22 @@ ${historyText}
             document.getElementById('accountModal').style.display = 'none';
         }
 
-        function deleteReading(index) {
-            if (confirm('Удалить этот расклад?')) {
-                const history = JSON.parse(localStorage.getItem('tarot_history') || '[]');
-                history.splice(index, 1);
-                localStorage.setItem('tarot_history', JSON.stringify(history));
-                openAccount(); // Обновляем список
-            }
+        function deleteReading(idx) {
+            if (!confirm('Удалить?')) return;
+            const history = JSON.parse(localStorage.getItem('tarot_history')||'[]');
+            history.splice(idx,1);
+            localStorage.setItem('tarot_history', JSON.stringify(history));
+            openAccount();
         }
 
-        function saveNote(index, note) {
-            const history = JSON.parse(localStorage.getItem('tarot_history') || '[]');
-            if (history[index]) {
-                history[index].note = note;
-                localStorage.setItem('tarot_history', JSON.stringify(history));
-            }
+        function saveNote(idx, note) {
+            const history = JSON.parse(localStorage.getItem('tarot_history')||'[]');
+            if (history[idx]) { history[idx].note = note; localStorage.setItem('tarot_history', JSON.stringify(history)); }
         }
 
-        window.onclick = function(event) {
-            if (event.target === document.getElementById('cardModal')) closeModal();
-            if (event.target === document.getElementById('accountModal')) closeAccount();
+        window.onclick = e => {
+            if (e.target.id==='cardModal') closeModal();
+            if (e.target.id==='accountModal') closeAccount();
         };
 
         renderSpread();
