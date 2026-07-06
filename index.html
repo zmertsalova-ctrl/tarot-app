@@ -71,7 +71,7 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(11, 107, 129, 0.4);
         }
-        .workspace { display: flex; gap: 25px; margin-bottom: 30px; }
+        .workspace { display: flex; gap: 25px; margin-bottom: 30px; position: relative; }
         .deck {
             width: 200px;
             background: rgba(13, 41, 68, 0.8);
@@ -93,12 +93,6 @@
             overflow: hidden;
             border: 3px solid #B1B9C5;
             box-shadow: 0 0 20px rgba(11, 107, 129, 0.3);
-            background: linear-gradient(135deg, #0B6B81, #0D2944);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #B1B9C5;
-            font-size: 40px;
         }
         .deck-card:hover {
             transform: scale(1.05) rotate(2deg);
@@ -106,8 +100,14 @@
         }
         .deck-card img { width: 100%; height: 100%; object-fit: cover; }
         
+        .candle-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(13, 41, 68, 0.6);
+            border-radius: 10px;
+            border: 2px solid #0B6B81;
+        }
         .candle-container {
-            margin-top: 25px;
             position: relative;
             height: 140px;
             display: flex;
@@ -244,7 +244,7 @@
         .placed-card.flipped img { transform: rotate(180deg); }
         .card-controls {
             position: absolute;
-            bottom: -55px;
+            bottom: -65px;
             left: 50%;
             transform: translateX(-50%);
             display: none;
@@ -253,7 +253,7 @@
             background: rgba(7, 16, 27, 0.95);
             padding: 8px;
             border-radius: 10px;
-            z-index: 20;
+            z-index: 100;
             border: 1px solid #0B6B81;
         }
         .placed-card:hover .card-controls,
@@ -321,7 +321,7 @@
             overflow-y: auto;
         }
         .modal-content h3 { color: #B1B9C5; margin-bottom: 20px; text-align: center; }
-        .close-modal { float: right; font-size: 28px; cursor: pointer; color: #B1B9C5; }
+        .close-modal { float: right; font-size: 28px; cursor: pointer; color: #B1B9C5; z-index: 10; position: relative; }
         .close-modal:hover { color: #F5F5F0; }
         select, textarea {
             width: 100%;
@@ -504,15 +504,10 @@
         <div class="workspace">
             <div class="deck">
                 <h2>Колода</h2>
-                <div class="deck-card" onclick="drawCard()">🎴</div>
-                <p style="margin-top: 10px; font-size: 12px;">Нажми для карты</p>
-                
-                <div class="candle-container">
-                    <div class="candle">
-                        <div class="flame" id="flame"></div>
-                    </div>
-                    <div class="lighter" id="lighter" onclick="toggleCandle()">🔥 Зажечь</div>
+                <div class="deck-card" onclick="drawCard()">
+                    <img src="Рубашка карт.jpg" alt="Рубашка">
                 </div>
+                <p style="margin-top: 10px; font-size: 12px;">Нажми для карты</p>
             </div>
 
             <div class="table-container">
@@ -522,6 +517,15 @@
                         <div class="spread-layout" id="spreadLayout"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="candle-section">
+            <div class="candle-container">
+                <div class="candle">
+                    <div class="flame" id="flame"></div>
+                </div>
+                <div class="lighter" id="lighter" onclick="toggleCandle()">🔥 Зажечь</div>
             </div>
         </div>
 
@@ -706,9 +710,7 @@
             ]}
         };
 
-        // Инициализация - свеча потушена
         window.onload = function() {
-            // Убеждаемся, что свеча потушена при загрузке
             const flame = document.getElementById('flame');
             const lighter = document.getElementById('lighter');
             if (flame) flame.classList.remove('lit');
@@ -748,7 +750,7 @@
         function getPositionHeight(idx) {
             const div = document.getElementById(`clarifiers-${idx}`);
             const count = div ? div.querySelectorAll('.clarifier-card').length : 0;
-            return 180 + 50 + (count * 128);
+            return 180 + 70 + (count * 140);
         }
 
         function recalculatePositions() {
@@ -819,7 +821,7 @@
                     div.innerHTML = `
                         <div class="position-label">${pos.label}</div>
                         <div class="placed-card" id="card-${i}">
-                            <div style="width:100%;height:100%;background:linear-gradient(135deg,#0B6B81,#0D2944);display:flex;align-items:center;justify-content:center;color:#B1B9C5;font-size:40px;">🎴</div>
+                            <img src="Рубашка карт.jpg" alt="Рубашка">
                             <div class="card-label">${pos.label}</div>
                             <div class="card-controls">
                                 <div class="card-controls-row">
@@ -858,7 +860,7 @@
             div.style.left = (Math.random() * 400 + 30) + 'px';
             div.style.top = (Math.random() * 250 + 20) + 'px';
             div.innerHTML = `
-                <div style="width:100%;height:100%;background:linear-gradient(135deg,#0B6B81,#0D2944);display:flex;align-items:center;justify-content:center;color:#B1B9C5;font-size:40px;">🎴</div>
+                <img src="Рубашка карт.jpg" alt="Рубашка">
                 <div class="card-controls">
                     <button onclick="flipCard(this)">🔄</button>
                     <button onclick="openCardModal(this)">🃏</button>
@@ -873,7 +875,7 @@
             if (!div) return;
             const c = document.createElement('div');
             c.className = 'clarifier-card';
-            c.innerHTML = `<div style="width:100%;height:100%;background:linear-gradient(135deg,#0B6B81,#0D2944);display:flex;align-items:center;justify-content:center;color:#B1B9C5;font-size:30px;">🎴</div><div class="card-controls"><button onclick="flipCard(this)">🔄</button><button onclick="openCardModal(this)">🃏</button></div>`;
+            c.innerHTML = `<img src="Рубашка карт.jpg" alt="Рубашка"><div class="card-controls"><button onclick="flipCard(this)">🔄</button><button onclick="openCardModal(this)">🃏</button></div>`;
             div.appendChild(c);
             setTimeout(() => { recalculatePositions(); adjustLayoutScale(); }, 50);
         }
@@ -909,10 +911,7 @@
             const file = document.getElementById('cardSelect').value;
             if (file) {
                 const img = currentCardElement.querySelector('img');
-                const placeholder = currentCardElement.querySelector('div:not(.card-controls):not(.card-label)');
-                if (placeholder) {
-                    placeholder.outerHTML = `<img src="${file}" style="width:100%;height:100%;object-fit:cover;border-radius:7px;">`;
-                }
+                if (img) img.src = file;
                 const label = currentCardElement.querySelector('.card-label');
                 if (label) label.textContent = document.getElementById('cardSelect').options[document.getElementById('cardSelect').selectedIndex].text;
             }
@@ -930,7 +929,6 @@
                 cardCounter = 0;
                 nextPositionIndex = 0;
                 freeCardCounter = 0;
-                // Гасим свечу при очистке
                 candleLit = false;
                 const flame = document.getElementById('flame');
                 const lighter = document.getElementById('lighter');
@@ -983,7 +981,7 @@
             if (currentSpread === 'free') {
                 document.querySelectorAll('.free-card-container .placed-card, #freeContainer .placed-card').forEach((card, i) => {
                     const img = card.querySelector('img');
-                    const name = img ? img.src.split('/').pop().replace('.jpg','') : 'Не выбрана';
+                    const name = img && img.src.includes('.jpg') ? img.src.split('/').pop().replace('.jpg','') : 'Не выбрана';
                     text += `Карта ${i+1}: ${name} ${card.classList.contains('flipped')?'(перевёрнута)':''}\n`;
                 });
             } else {
@@ -991,7 +989,7 @@
                     const card = document.getElementById(`card-${i}`);
                     if (card) {
                         const img = card.querySelector('img');
-                        const name = img ? img.src.split('/').pop().replace('.jpg','') : 'Не выбрана';
+                        const name = img && img.src.includes('.jpg') ? img.src.split('/').pop().replace('.jpg','') : 'Не выбрана';
                         text += `${pos.label}: ${name} ${card.classList.contains('flipped')?'(перевёрнута)':''}\n`;
                     }
                 });
