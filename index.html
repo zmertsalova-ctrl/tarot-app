@@ -100,91 +100,31 @@
         }
         .deck-card img { width: 100%; height: 100%; object-fit: cover; }
         
-        .candle-section {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(13, 41, 68, 0.6);
-            border-radius: 10px;
-            border: 2px solid #0B6B81;
-        }
-        .candle-container {
+        .cat-container {
+            margin-top: 20px;
             position: relative;
-            height: 140px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 25px;
+            width: 100px;
+            height: 100px;
+            margin: 20px auto 0;
         }
-        .candle {
-            width: 25px;
-            height: 90px;
-            background: linear-gradient(to bottom, #F5F5F0 0%, #E8E8E0 50%, #D0D0C8 100%);
-            border-radius: 3px 3px 5px 5px;
-            position: relative;
-            border: 1px solid #B1B9C5;
-            box-shadow: 0 0 15px rgba(255, 200, 150, 0.3);
-        }
-        .candle::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: 12px;
-            background: #2C2C2C;
-            border-radius: 2px;
-        }
-        .flame {
-            width: 16px;
-            height: 35px;
-            background: linear-gradient(to bottom, #FFF8DC 0%, #FFD700 30%, #FFA500 60%, #FF6347 100%);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            position: absolute;
-            top: -45px;
-            left: 50%;
-            transform: translateX(-50%) scale(0);
-            opacity: 0;
-            transition: all 0.8s ease-out;
-            box-shadow: 0 0 25px #FFA500, 0 0 45px #FF6347, 0 0 65px #FFD700;
-            animation: flicker 0.3s infinite alternate;
-            filter: blur(0.5px);
-        }
-        .flame.lit {
-            transform: translateX(-50%) scale(1);
-            opacity: 1;
-            animation: growFlame 3s ease-out, flicker 0.3s infinite alternate;
-        }
-        @keyframes flicker {
-            0% { transform: translateX(-50%) scale(0.95, 1.05); opacity: 0.9; }
-            100% { transform: translateX(-50%) scale(1.05, 0.95); opacity: 1; }
-        }
-        @keyframes growFlame {
-            0% { transform: translateX(-50%) scale(0); opacity: 0; }
-            100% { transform: translateX(-50%) scale(1); opacity: 1; }
-        }
-        .lighter {
-            width: 70px;
-            height: 28px;
-            background: linear-gradient(135deg, #0B6B81 0%, #07101B 100%);
-            border-radius: 4px;
+        .cat {
+            font-size: 60px;
             cursor: pointer;
-            border: 1px solid #B1B9C5;
+            transition: transform 0.3s;
+            display: block;
+        }
+        .cat:hover {
+            transform: scale(1.1);
+        }
+        .cat-paw {
+            position: absolute;
+            font-size: 30px;
             transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #B1B9C5;
-            font-size: 11px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            opacity: 0;
         }
-        .lighter:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 15px rgba(11, 107, 129, 0.6);
-        }
-        .lighter.lit {
-            background: linear-gradient(135deg, #FF8C00 0%, #800B1F 100%);
-            box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+        .cat-paw.show {
+            opacity: 1;
+            transform: translate(20px, -20px) rotate(-45deg);
         }
         
         .table-container { flex: 1; overflow: hidden; }
@@ -215,7 +155,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .position-label {
             color: #B1B9C5;
@@ -244,30 +184,32 @@
         .placed-card.flipped img { transform: rotate(180deg); }
         .card-controls {
             position: absolute;
-            bottom: -65px;
+            bottom: -80px;
             left: 50%;
             transform: translateX(-50%);
             display: none;
             flex-direction: column;
             gap: 5px;
             background: rgba(7, 16, 27, 0.95);
-            padding: 8px;
+            padding: 10px;
             border-radius: 10px;
             z-index: 100;
             border: 1px solid #0B6B81;
+            min-width: 150px;
         }
         .placed-card:hover .card-controls,
         .clarifier-card:hover .card-controls { display: flex !important; }
-        .card-controls-row { display: flex; gap: 5px; }
+        .card-controls-row { display: flex; gap: 5px; justify-content: center; }
         .card-controls button {
             background: #0B6B81;
             color: #B1B9C5;
             border: none;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 11px;
             font-weight: bold;
+            white-space: nowrap;
         }
         .card-controls button:hover { 
             background: #12506F;
@@ -286,8 +228,8 @@
         .clarifiers-container {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 8px;
+            gap: 15px;
+            margin-top: 10px;
         }
         .clarifier-card {
             width: 80px;
@@ -508,6 +450,11 @@
                     <img src="Рубашка карт.jpg" alt="Рубашка">
                 </div>
                 <p style="margin-top: 10px; font-size: 12px;">Нажми для карты</p>
+                
+                <div class="cat-container" id="catContainer">
+                    <span class="cat" id="cat">🐱</span>
+                    <span class="cat-paw" id="catPaw">🐾</span>
+                </div>
             </div>
 
             <div class="table-container">
@@ -517,15 +464,6 @@
                         <div class="spread-layout" id="spreadLayout"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="candle-section">
-            <div class="candle-container">
-                <div class="candle">
-                    <div class="flame" id="flame"></div>
-                </div>
-                <div class="lighter" id="lighter" onclick="toggleCandle()">🔥 Зажечь</div>
             </div>
         </div>
 
@@ -593,13 +531,16 @@
     </div>
 
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="candle" style="transform: scale(1.5);"><div class="flame lit"></div></div>
+        <div class="candle" style="width: 25px; height: 90px; background: linear-gradient(to bottom, #F5F5F0, #D0D0C8); border-radius: 3px; position: relative; border: 1px solid #B1B9C5;">
+            <div style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 3px; height: 12px; background: #2C2C2C; border-radius: 2px;"></div>
+            <div class="flame" style="width: 16px; height: 35px; background: linear-gradient(to bottom, #FFF8DC, #FFD700, #FF6347); border-radius: 50%; position: absolute; top: -45px; left: 50%; transform: translateX(-50%); box-shadow: 0 0 25px #FFA500; animation: flicker 0.3s infinite;"></div>
+        </div>
         <div class="loading-text">Ждём ответ от Высших сил...</div>
     </div>
 
     <script>
         let cardCounter = 0, currentCardElement = null, currentSpread = 'three', isLocked = false;
-        let nextPositionIndex = 0, recognition = null, freeCardCounter = 0, candleLit = false;
+        let nextPositionIndex = 0, recognition = null, freeCardCounter = 0;
 
         const quotes = ["Карты показывают путь, но идёшь ты.", "Судьба любит смелых.", "В каждой карте — мудрость веков."];
 
@@ -710,16 +651,29 @@
             ]}
         };
 
-        window.onload = function() {
-            const flame = document.getElementById('flame');
-            const lighter = document.getElementById('lighter');
-            if (flame) flame.classList.remove('lit');
-            if (lighter) {
-                lighter.classList.remove('lit');
-                lighter.textContent = '🔥 Зажечь';
-            }
-            candleLit = false;
+        // Кот и курсор
+        const cat = document.getElementById('cat');
+        const catPaw = document.getElementById('catPaw');
+        const catContainer = document.getElementById('catContainer');
+        
+        document.addEventListener('mousemove', (e) => {
+            const catRect = catContainer.getBoundingClientRect();
+            const catX = catRect.left + catRect.width / 2;
+            const catY = catRect.top + catRect.height / 2;
+            const distance = Math.sqrt(Math.pow(e.clientX - catX, 2) + Math.pow(e.clientY - catY, 2));
             
+            if (distance < 150) {
+                catPaw.classList.add('show');
+                const angle = Math.atan2(e.clientY - catY, e.clientX - catX);
+                const pawX = Math.cos(angle) * 30;
+                const pawY = Math.sin(angle) * 30;
+                catPaw.style.transform = `translate(${pawX}px, ${pawY}px) rotate(${angle}rad)`;
+            } else {
+                catPaw.classList.remove('show');
+            }
+        });
+
+        window.onload = function() {
             const q = localStorage.getItem('tarot_question');
             const c = localStorage.getItem('tarot_context');
             const h = localStorage.getItem('tarot_useHistory');
@@ -729,28 +683,10 @@
             renderSpread();
         };
 
-        function toggleCandle() {
-            candleLit = !candleLit;
-            const flame = document.getElementById('flame');
-            const lighter = document.getElementById('lighter');
-            
-            if (!flame || !lighter) return;
-            
-            if (candleLit) {
-                flame.classList.add('lit');
-                lighter.classList.add('lit');
-                lighter.textContent = '🔥 Погасить';
-            } else {
-                flame.classList.remove('lit');
-                lighter.classList.remove('lit');
-                lighter.textContent = '🔥 Зажечь';
-            }
-        }
-
         function getPositionHeight(idx) {
             const div = document.getElementById(`clarifiers-${idx}`);
             const count = div ? div.querySelectorAll('.clarifier-card').length : 0;
-            return 180 + 70 + (count * 140);
+            return 180 + 90 + (count * 150);
         }
 
         function recalculatePositions() {
@@ -766,7 +702,7 @@
             const rowTops = {};
             Object.keys(rowHeights).sort().forEach(row => {
                 rowTops[row] = top;
-                top += rowHeights[row] + 30;
+                top += rowHeights[row] + 40;
             });
             positions.forEach((pos, i) => {
                 const div = document.getElementById(`position-${i}`);
@@ -825,8 +761,8 @@
                             <div class="card-label">${pos.label}</div>
                             <div class="card-controls">
                                 <div class="card-controls-row">
-                                    <button onclick="event.stopPropagation();flipCardInPosition(${i})">🔄</button>
-                                    <button onclick="event.stopPropagation();openCardModalForPosition(${i})">🃏</button>
+                                    <button onclick="event.stopPropagation();flipCardInPosition(${i})">Перевернуть</button>
+                                    <button onclick="event.stopPropagation();openCardModalForPosition(${i})">Выбрать карту</button>
                                 </div>
                                 <div class="card-controls-row">
                                     <button class="clarify-btn" onclick="event.stopPropagation();addClarifier(${i})">+ Пояснение</button>
@@ -862,8 +798,8 @@
             div.innerHTML = `
                 <img src="Рубашка карт.jpg" alt="Рубашка">
                 <div class="card-controls">
-                    <button onclick="flipCard(this)">🔄</button>
-                    <button onclick="openCardModal(this)">🃏</button>
+                    <button onclick="flipCard(this)">Перевернуть</button>
+                    <button onclick="openCardModal(this)">Выбрать карту</button>
                 </div>
             `;
             container.appendChild(div);
@@ -875,7 +811,7 @@
             if (!div) return;
             const c = document.createElement('div');
             c.className = 'clarifier-card';
-            c.innerHTML = `<img src="Рубашка карт.jpg" alt="Рубашка"><div class="card-controls"><button onclick="flipCard(this)">🔄</button><button onclick="openCardModal(this)">🃏</button></div>`;
+            c.innerHTML = `<img src="Рубашка карт.jpg" alt="Рубашка"><div class="card-controls"><button onclick="flipCard(this)">Перевернуть</button><button onclick="openCardModal(this)">Выбрать</button></div>`;
             div.appendChild(c);
             setTimeout(() => { recalculatePositions(); adjustLayoutScale(); }, 50);
         }
@@ -929,14 +865,6 @@
                 cardCounter = 0;
                 nextPositionIndex = 0;
                 freeCardCounter = 0;
-                candleLit = false;
-                const flame = document.getElementById('flame');
-                const lighter = document.getElementById('lighter');
-                if (flame) flame.classList.remove('lit');
-                if (lighter) {
-                    lighter.classList.remove('lit');
-                    lighter.textContent = '🔥 Зажечь';
-                }
                 renderSpread();
             }
         }
@@ -1065,7 +993,7 @@
                         <div class="date">${r.date}</div>
                         <p><b>Вопрос:</b> ${r.question}</p>
                         ${r.context?`<p><b>Контекст:</b> ${r.context}</p>`:''}
-                        <div class="cards-info"><b>Карты:</b><br>${r.cards.replace(/\n/g,'<br>')}</div>
+                        <div class="cards-info"><b>Карты:</b><br>${r.cards.replace(/\n/g,'<br>').replace(/[#*`]/g,'')}</div>
                         <p><b>Ответ:</b><br>${r.shortAnswer}</p>
                         <label>Заметки:</label>
                         <textarea placeholder="Заметки..." onchange="saveNote(${i},this.value)">${r.note||''}</textarea>
